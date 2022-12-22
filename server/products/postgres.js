@@ -1,7 +1,7 @@
 const { Client } = require('pg');
 
 const client = new Client({
-  password: "one"
+  password: "none"
 })
 
 
