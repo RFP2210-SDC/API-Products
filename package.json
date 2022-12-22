@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
+    "dotenv": "^16.0.3",
     "mongoose": "^6.8.1",
     "pg": "^8.8.0"
   },
@@ -15,9 +16,5 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RFP2210-SDC/API-Products.git"
   }
 }
