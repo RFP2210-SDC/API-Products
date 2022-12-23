@@ -1,9 +1,13 @@
 const { Client } = require('pg');
+require('dotenv').config()
 
 const client = new Client({
-  password: "none"
+  port: process.env.PGPORT,
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
 })
-
 
 const doWork = async function() {
   await client.connect()
@@ -17,3 +21,7 @@ const doWork = async function() {
 }
 
 doWork();
+
+// run this file: node /Users/RyanGehris/hack-reactor-sdc/API-Products/server/products/postgres.js
+// run schema file: node /Users/RyanGehris/hack-reactor-sdc/API-Products/server/schema.sql
+// login to psql: psql -h localhost -p 5432 -U postgres -W
