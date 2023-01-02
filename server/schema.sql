@@ -28,7 +28,7 @@ CREATE TABLE related (
 
 CREATE TABLE feature (
   id INT,
-  feature.product_id INT,
+  feature_product_id INT,
   feature VARCHAR,
   value VARCHAR,
   CONSTRAINT feature
@@ -38,7 +38,7 @@ CREATE TABLE feature (
 
 CREATE TABLE style (
   style_id INT,
-  product_id INT,
+  style_product_id INT,
   name VARCHAR,
   sale_price INT,
   default_price INT,
@@ -51,7 +51,7 @@ CREATE TABLE style (
 
 CREATE TABLE photo (
   id INT,
-  photo.style_id INT,
+  photo_style_id INT,
   url VARCHAR,
   thumbnail_url VARCHAR,
   CONSTRAINT photo
@@ -61,7 +61,7 @@ CREATE TABLE photo (
 
 CREATE TABLE sku (
   id INT,
-  sku.style_id INT,
+  sku_style_id INT,
   size VARCHAR,
   quantity VARCHAR,
   CONSTRAINT sku
