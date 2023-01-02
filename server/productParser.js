@@ -17,7 +17,7 @@ const outputFile = path.resolve(__dirname, '../rawdata/transformed_product.csv')
     headers: true,
   });
 
-  const transform = format({ headers: true, quote: false })
+  const transform = format({ headers: true, quote: true })
     .transform((row) => (
       {
         product_id: row.id,

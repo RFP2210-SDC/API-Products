@@ -9,11 +9,6 @@ const outputFile = path.resolve(__dirname, '../rawdata/transformed_related.csv')
 // PARSE USING FAST-CSV
 
 (async function transformCsv() {
-  // var count = 0;
-  // var counter = () => {
-  //   console.log(count);
-  //   count++;
-  // }
   const writeStream = fs.createWriteStream(outputFile);
 
   const parseOpts = parse({
