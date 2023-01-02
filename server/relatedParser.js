@@ -15,7 +15,12 @@ const outputFile = path.resolve(__dirname, '../rawdata/transformed_related.csv')
     ignoreEmpty: true,
     discardUnmappedColumns: true,
     headers: true,
-  });
+  })
+    // added to take care of issue with related_product_id being 0 which is not valid when copying over the data to the DB
+    .validate(data => data.related_product_id !== '0')
+    .on('error', error => console.error(error))
+    .on('data-invalid', (row, rowNumber) => console.log(`Invalid [rowNumber=${rowNumber}] [row=${JSON.stringify(row)}]`))
+    .on('end', rowCount => console.log(`Parsed ${rowCount} rows`));
 
   const transform = format({ headers: true, quote: false })
     .transform((row) => (
