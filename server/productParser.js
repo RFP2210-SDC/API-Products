@@ -3,17 +3,12 @@ const fs = require('fs');
 const path = require('path');
 const { parse, format } = require('fast-csv');
 
-const inputFile = path.join(__dirname, '../rawData/related.csv');
-const outputFile = path.resolve(__dirname, '../rawdata/transformed_related.csv');
+const inputFile = path.join(__dirname, '../rawData/product.csv');
+const outputFile = path.resolve(__dirname, '../rawdata/transformed_product.csv');
 
 // PARSE USING FAST-CSV
 
 (async function transformCsv() {
-  // var count = 0;
-  // var counter = () => {
-  //   console.log(count);
-  //   count++;
-  // }
   const writeStream = fs.createWriteStream(outputFile);
 
   const parseOpts = parse({
@@ -25,9 +20,12 @@ const outputFile = path.resolve(__dirname, '../rawdata/transformed_related.csv')
   const transform = format({ headers: true, quote: false })
     .transform((row) => (
       {
-        id: row.id,
-        current_product_id: row.current_product_id,
-        related_product_id: row.related_product_id
+        product_id: row.id,
+        name: row.name,
+        slogan: row.slogan,
+        description: row.description,
+        category: row.category,
+        default_price: row.default_price
       }
     ))
 
