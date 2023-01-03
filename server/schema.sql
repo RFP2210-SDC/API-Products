@@ -41,7 +41,7 @@ CREATE TABLE style (
   style_product_id INT,
   name VARCHAR,
   sale_price VARCHAR,
-  default_price INT,
+  original_price VARCHAR,
   default_style BOOLEAN,
   PRIMARY KEY(style_id),
   CONSTRAINT style
@@ -63,7 +63,7 @@ CREATE TABLE sku (
   id INT,
   sku_style_id INT,
   size VARCHAR,
-  quantity VARCHAR,
+  quantity INT,
   CONSTRAINT sku
     FOREIGN KEY(sku_style_id)
       REFERENCES style(style_id)

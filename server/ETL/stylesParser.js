@@ -24,7 +24,7 @@ const outputFile = path.resolve(__dirname, '../../rawdata/transformed_styles.csv
         style_product_id: row.productId,
         name: row.name,
         sale_price: row.sale_price,
-        default_price: row.original_price,
+        original_price: row.original_price === 'null' ? null : `"${row.original_price}"`,
         default_style: row.default_style,
       }
     ))
