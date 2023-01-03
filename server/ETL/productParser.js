@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { parse, format } = require('fast-csv');
 
-const inputFile = path.join(__dirname, '../rawData/styles.csv');
-const outputFile = path.resolve(__dirname, '../rawdata/transformed_styles.csv');
+const inputFile = path.join(__dirname, '../../rawData/product.csv');
+const outputFile = path.resolve(__dirname, '../../rawdata/transformed_product.csv');
 
 // PARSE USING FAST-CSV
 
@@ -17,15 +17,15 @@ const outputFile = path.resolve(__dirname, '../rawdata/transformed_styles.csv');
     headers: true,
   });
 
-  const transform = format({ headers: true, quote: false })
+  const transform = format({ headers: true, quote: true })
     .transform((row) => (
       {
-        style_id: row.id,
-        style_product_id: row.productId,
+        product_id: row.id,
         name: row.name,
-        sale_price: row.sale_price,
-        default_price: row.original_price,
-        default_style: row.default_style,
+        slogan: row.slogan,
+        description: row.description,
+        category: row.category,
+        default_price: row.default_price
       }
     ))
 

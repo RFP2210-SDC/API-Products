@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { parse, format } = require('fast-csv');
 
-const inputFile = path.join(__dirname, '../rawData/skus.csv');
-const outputFile = path.resolve(__dirname, '../rawdata/transformed_skus.csv');
+const inputFile = path.join(__dirname, '../../rawData/skus.csv');
+const outputFile = path.resolve(__dirname, '../../rawdata/transformed_skus.csv');
 
 // PARSE USING FAST-CSV
 
