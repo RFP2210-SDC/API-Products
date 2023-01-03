@@ -30,12 +30,7 @@ app.get('/products/:product_id/styles', (req, res) => {
 app.get('/products/:product_id/related', (req, res) => {
   // SELECT related_product_id FROM related WHERE current_product_id=${product_id};
   //   returns an array of product_ids
-  if (req.params.product_id === '1') {
-    res.status(200).send('related 1');
-  }
-  if (req.params.product_id === '5') {
-    res.status(200).send('related 5');
-  }
+  res.status(200).send('related');
 })
 
 app.listen(port, () => {
