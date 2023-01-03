@@ -11,7 +11,7 @@ CREATE TABLE product (
   slogan VARCHAR,
   description VARCHAR,
   category VARCHAR,
-  default_price INTEGER,
+  default_price VARCHAR,
   -- createdAt TIMESTAMPTZ,
   PRIMARY KEY(product_id)
 );
@@ -81,4 +81,7 @@ COPY photo FROM '/Users/RyanGehris/hack-reactor-sdc/API-Products/rawData/transfo
 
 COPY sku FROM '/Users/RyanGehris/hack-reactor-sdc/API-Products/rawData/transformed_skus.csv' WITH (FORMAT CSV, HEADER true);
 
+-- \l to list databases
+-- \c to select database
+-- \dt to list tables in DB
 -- run file in psql \i /Users/RyanGehris/hack-reactor-sdc/API-Products/server/schema.sql

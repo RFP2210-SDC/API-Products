@@ -2,17 +2,20 @@ const express = require('express');
 const app = express();
 require('dotenv').config()
 const port = process.env.PORT || 3000;
-const {getRelated} = require('./postgres.js')
+const {getRelated, getProductList} = require('./postgres.js')
 
 // middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.get('/products', (req, res) => {
-  // SELECT * FROM product
-  //   returns id, name, slogan, description, category, default_price
-  //   include count and page
-  res.status(200).send('product list');
+  getProductList(req.query, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(data)
+    }
+  })
 })
 
 app.get('/products/:product_id', (req, res) => {
