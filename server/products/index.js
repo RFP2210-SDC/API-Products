@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config()
 const port = process.env.PORT || 3000;
+const {getRelated} = require('./postgres.js')
 
 // middleware
 app.use(express.urlencoded({extended: true}));
@@ -30,7 +31,13 @@ app.get('/products/:product_id/styles', (req, res) => {
 app.get('/products/:product_id/related', (req, res) => {
   // SELECT related_product_id FROM related WHERE current_product_id=${product_id};
   //   returns an array of product_ids
-  res.status(200).send('related');
+  getRelated(parseInt(req.params.product_id), (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(data)
+    }
+  })
 })
 
 app.listen(port, () => {
