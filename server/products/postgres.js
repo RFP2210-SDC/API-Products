@@ -73,7 +73,23 @@ module.exports.getProduct = function(product_id, client, done, cb) {
 }
 
 module.exports.getStyles = function(product_id, client, done, cb) {
+  // SELECT * FROM style WHERE style_product_id=${product_id}
+  //   returns product_id, results (obj)
+  //     within results object: style_id, name, original_price, sale_price, default, photos (array of objects), skus (obj)
+  const queryStyles = {
+    text: 'SELECT style_id, name, original_price, sale_price, default_style FROM style WHERE style_product_id = $1',
+    values: [product_id],
+  }
 
+  const queryPhotos = {
+    text: 'SELECT thumbnail_url, url, style_id FROM photo INNER JOIN style ON photo_style_id = style_id AND style_product_id = $1',
+    values: [product_id],
+  }
+
+  const querySku = {
+    text: 'SELECT id, sku_style_id, size, quantity FROM sku INNER JOIN style ON sku_style_id = style_id AND style_product_id = $1'
+    values: [product_id],
+  }
 }
 
 module.exports.getRelated = function(product_id, client, done, cb) {
