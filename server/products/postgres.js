@@ -23,6 +23,7 @@ module.exports.getProductList = function(params, client, done, cb) {
   let page = params.page || 1;
   let count = params.count || 5;
   let offset = (page - 1) * count;
+  console.log(offset, count);
 
   const query = {
     text: 'SELECT * FROM product OFFSET $1 LIMIT $2',
@@ -32,7 +33,8 @@ module.exports.getProductList = function(params, client, done, cb) {
   client
     .query(query)
     .then(res => {
-      cb(null, res.rows[0]);
+      console.log(res.rows)
+      cb(null, res.rows);
     })
     .catch(err => {
       console.error(err);

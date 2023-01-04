@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Online shopping portal",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "k6ProductList": "k6 run server/products/tests/k6ProductList.js",
+    "k6Product": "k6 run server/products/tests/k6Product.js",
+    "k6Styles": "k6 run server/products/tests/k6Styles.js",
+    "k6Related": "k6 run server/products/tests/k6Related.js"
+  },
   "dependencies": {
     "axios": "^1.2.1",
     "csv": "^6.2.5",
