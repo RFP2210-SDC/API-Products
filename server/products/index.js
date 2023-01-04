@@ -25,9 +25,19 @@ app.get('/products', (req, res) => {
 })
 
 app.get('/products/:product_id', (req, res) => {
-  // SELECT * FROM product WHERE product_id=${product_id}
-  //   returns id, name, slogan, description, category, default_price, features (array)
-  res.status(200).send('individual product');
+  getConnection((err, client, done) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      getProduct(parseInt(req.params.product_id), client, done, (err, data) => {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          res.status(200).send(data)
+        }
+      })
+    }
+  })
 })
 
 app.get('/products/:product_id/styles', (req, res) => {
