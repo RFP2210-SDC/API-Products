@@ -69,6 +69,12 @@ CREATE TABLE sku (
       REFERENCES style(style_id)
 );
 
+CREATE INDEX idx_related_product_id ON related(current_product_id);
+CREATE INDEX idx_feature_product_id ON feature(feature_product_id);
+CREATE INDEX idx_style_product_id ON style(style_product_id);
+CREATE INDEX idx_photo_style_id ON photo(photo_style_id);
+CREATE INDEX idx_sku_style_id ON sku(sku_style_id);
+
 COPY product FROM '/Users/RyanGehris/hack-reactor-sdc/API-Products/rawData/transformed_product.csv' WITH (FORMAT CSV, HEADER true);
 
 COPY related FROM '/Users/RyanGehris/hack-reactor-sdc/API-Products/rawData/transformed_related.csv' WITH (FORMAT CSV, HEADER true);
