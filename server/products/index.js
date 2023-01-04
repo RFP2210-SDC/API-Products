@@ -2,18 +2,34 @@ const express = require('express');
 const app = express();
 require('dotenv').config()
 const port = process.env.PORT || 3000;
-const {getRelated, getProductList} = require('./postgres.js')
+const {getConnection, getRelated, getProductList} = require('./postgres.js')
 
 // middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+// app.get('/products', (req, res) => {
+//   getProductList(req.query, (err, data) => {
+//     if (err) {
+//       res.status(400).send(err);
+//     } else {
+//       res.status(200).send(data)
+//     }
+//   })
+// })
+
 app.get('/products', (req, res) => {
-  getProductList(req.query, (err, data) => {
+  getConnection((err, client, done) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(200).send(data)
+      getProductList(req.query, client, done, (err, data) => {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          res.status(200).send(data)
+        }
+      })
     }
   })
 })
@@ -34,11 +50,17 @@ app.get('/products/:product_id/styles', (req, res) => {
 app.get('/products/:product_id/related', (req, res) => {
   // SELECT related_product_id FROM related WHERE current_product_id=${product_id};
   //   returns an array of product_ids
-  getRelated(parseInt(req.params.product_id), (err, data) => {
+  getConnection((err, client, done) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(200).send(data)
+      getRelated(parseInt(req.params.product_id), client, done, (err, data) => {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          res.status(200).send(data)
+        }
+      })
     }
   })
 })
