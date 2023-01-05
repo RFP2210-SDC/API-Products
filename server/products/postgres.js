@@ -92,7 +92,7 @@ module.exports.getStyles = function(product_id, client, done, cb) {
 
 module.exports.getRelated = function(product_id, client, done, cb) {
   const query = {
-    text: 'SELECT related_product_id FROM related WHERE current_product_id = $1',
+    text: 'SELECT JSONB_AGG(related_product_id) FROM related WHERE current_product_id = $1',
     values: [product_id],
     rowMode: 'array',
   }
@@ -100,11 +100,7 @@ module.exports.getRelated = function(product_id, client, done, cb) {
   client
     .query(query)
     .then(res => {
-      const response = [];
-      res.rows.forEach((id) => {
-        response.push(id[0])
-      })
-      cb(null, response);
+      cb(null, res.rows[0][0]);
     })
     .catch(err => {
       console.error(err);
