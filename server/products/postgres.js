@@ -22,12 +22,20 @@ module.exports.getConnection = (cb) => {
 module.exports.getProductList = function(params, client, done, cb) {
   let page = params.page || 1;
   let count = params.count || 5;
-  let offset = (page - 1) * count;
-  console.log(offset, count);
+  let first_id = (page - 1) * count;
+  let last_id = first_id + parseInt(count);
 
+  // const query = {
+  //   text: 'SELECT * FROM product OFFSET $1 LIMIT $2',
+  //   values: [offset, count],
+  // }
+  // const query = {
+  //   text: 'SELECT * FROM product WHERE product_id >= $1 AND product_id <= $2',
+  //   values: [(first_id + 1), last_id],
+  // }
   const query = {
-    text: 'SELECT * FROM product OFFSET $1 LIMIT $2',
-    values: [offset, count],
+    text: 'SELECT * FROM product WHERE product_id >= $1 ORDER BY product_id ASC LIMIT $2',
+    values: [first_id, count],
   }
 
   client

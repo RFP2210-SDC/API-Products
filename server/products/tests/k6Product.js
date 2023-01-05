@@ -3,9 +3,15 @@ import { check, sleep } from 'k6';
 export const options = {
   // vus: 100,
   // duration: '30s',
+  // stages: [
+  //   {target: 1000, duration: '5s'},
+  //   {target: 1000, duration: '25s'}
+  // ]
   stages: [
     {target: 1000, duration: '5s'},
-    {target: 1000, duration: '25s'}
+    {target: 2000, duration: '10s'},
+    {target: 3000, duration: '10s'},
+    {target: 4000, duration: '10s'}
   ]
 }
 
