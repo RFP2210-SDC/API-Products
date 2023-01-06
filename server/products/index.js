@@ -15,6 +15,7 @@ app.get('/products', (req, res) => {
     } else {
       getProductList(req.query, client, done, (err, data) => {
         if (err) {
+          console.log(err)
           res.status(400).send(err);
         } else {
           res.status(200).send(data)
@@ -31,6 +32,7 @@ app.get('/products/:product_id', (req, res) => {
     } else {
       getProduct(parseInt(req.params.product_id), client, done, (err, data) => {
         if (err) {
+          console.log(err)
           res.status(400).send(err);
         } else {
           res.status(200).send(data)
@@ -47,6 +49,7 @@ app.get('/products/:product_id/styles', (req, res) => {
     } else {
       getStyles(parseInt(req.params.product_id), client, done, (err, data) => {
         if (err) {
+          console.log(err)
           res.status(400).send(err);
         } else {
           res.status(200).send(data)
@@ -63,6 +66,7 @@ app.get('/products/:product_id/related', (req, res) => {
     } else {
       getRelated(parseInt(req.params.product_id), client, done, (err, data) => {
         if (err) {
+          console.log(err)
           res.status(400).send(err);
         } else {
           res.status(200).send(data)
