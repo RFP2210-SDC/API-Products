@@ -4,6 +4,8 @@
   "description": "Online shopping portal",
   "main": "index.js",
   "scripts": {
+    "server": "node server/products/index.js",
+    "clear-cache": "sync && sudo purge",
     "k6ProductList": "k6 run server/products/tests/k6ProductList.js",
     "k6Product": "k6 run server/products/tests/k6Product.js",
     "k6Styles": "k6 run server/products/tests/k6Styles.js",
