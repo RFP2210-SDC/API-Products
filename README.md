@@ -19,16 +19,17 @@ I began the process of architecting a postgres database after analyzing five csv
 
 Maximizing query efficiency was important to me because I viewed it as a limiting factor for the response time and responses per second goals I was given. Spending more time optimizing query speeds can help save costs when horizontally or vertically scaling. The three main optimizations I made were client pooling, keyset pagination, and indexing.
 <details>
-  <summary>Client Pooling</summary>
-  
+  <summary>Connection Pool</summary>
+  By using a connection pool, when our user requests can be handled more efficiently.  The pool is able to leverage the databases multithreading abilities and reuse threads, rather than creating and tearing down a single thread when using a client connection. This is important when handling many requests per second.
 </details> 
 <details>
   <summary>Keyset Pagination</summary>
   
   |                    Before                   |                   After                    |
 | :------------------------------------------------: | :-----------------------------------------------: |
-| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png)|
+| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) -Response Time: 15.43s -Responses per second: 45.31| ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) -Response Time: 1.09s -Responses per second: 424.44|
   
+  Using keyset pagination as opposed to OFFSET LIMIT increased query times by 60%. This is because the query could go directly to a specific index, rather than sequentially searching through one million products. If we had a smaller database, the difference could be negligible.
 </details>
 <details>
   <summary>Indexing</summary>
