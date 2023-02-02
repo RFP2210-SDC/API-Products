@@ -11,12 +11,7 @@
 ### General Info
 
 Products API for the back-end of a clothing retail website that needed to meet the demand of a growing customer base continuosly accessing the over 1,000,000 product inventory. Within two weeks, our team designed a database and server, deployed it on AWS, and achieved a minimum of 1000 responses per second, with less than 1% error rate.
-
-
-
-<details>
-  <summary>Local Optimizations</summary>
-</details> 
+ 
 <a name="performance"></a>
 ### Perfomance
 
