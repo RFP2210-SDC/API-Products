@@ -32,15 +32,15 @@ By using a connection pool, when our user requests can be handled more efficient
  
   <summary>Keyset Pagination</summary>
   
-  |                    Before                   |                   After                    |
-| :------------------------------------------------: | :-----------------------------------------------: |
-| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) 
+                      Before                   |                   After                    
+ :------------------------------------------------: | :-----------------------------------------------: 
+ ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) 
   -1000 RPS Load
   -Response Time: 15.43s 
   -Responses per second: 45.31 | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) 
   -1000 RPS Load
   -Response Time: 1.09s 
-  -Responses per second: 424.44 |
+  -Responses per second: 424.44 
   
   Individual query times using keyset pagination as opposed to OFFSET LIMIT were twice as fast. With a 1000 rps load, response times were 15 times faster and I got nearly ten times the amount of responses per second. This is because the query could go directly to a specific index, rather than sequentially searching through one million products. If we had a smaller database, the difference could be negligible.
  
