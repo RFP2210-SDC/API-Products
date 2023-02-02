@@ -34,11 +34,9 @@ By using a connection pool, when our user requests can be handled more efficient
   
  |                    Before                         |                   After                           |
  | :-----------------------------------------------: | :-----------------------------------------------: |
- | ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) 
-  -1000 RPS Load
+ | ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) -1000 RPS Load
   -Response Time: 15.43s 
-  -Responses per second: 45.31 | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) 
-  -1000 RPS Load
+  -Responses per second: 45.31 | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) -1000 RPS Load
   -Response Time: 1.09s 
   -Responses per second: 424.44 |
   
