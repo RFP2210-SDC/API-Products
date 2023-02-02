@@ -12,63 +12,60 @@
 
 Products API for the back-end of a clothing retail website that needed to meet the demand of a growing customer base continuosly accessing the over 1,000,000 product inventory. Within two weeks, our team designed a database and server, deployed it on AWS, and achieved a minimum of 1000 responses per second, with less than 1% error rate.
 
+
+
+<details>
+  <summary>Local Optimizations</summary>
+</details> 
 <a name="performance"></a>
 ### Perfomance
 
 I began the process of architecting a postgres database after analyzing five csv files making up over 26 million rows of data. Once the database was designed to best handle user queries I engineered an ETL process to clean legacy data and ensure seamless loading into PostgresDB using CSV-Parser.
 
+<details>
+  <summary>Local Optimizations</summary>
+
 Maximizing query efficiency was important to me because I viewed it as a limiting factor for the response time and responses per second goals I was given. Spending more time optimizing query speeds can help save costs when horizontally or vertically scaling. The three main optimizations I made were client pooling, keyset pagination, and indexing.
+
 <details>
   <summary>Connection Pool</summary>
   By using a connection pool, when our user requests can be handled more efficiently.  The pool is able to leverage the databases multithreading abilities and reuse threads, rather than creating and tearing down a single thread when using a client connection. This is important when handling many requests per second.
 </details> 
+
 <details>
   <summary>Keyset Pagination</summary>
   
   |                    Before                   |                   After                    |
 | :------------------------------------------------: | :-----------------------------------------------: |
-| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) -Response Time: 15.43s -Responses per second: 45.31| ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) -Response Time: 1.09s -Responses per second: 424.44|
+| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) 
+  ## 1000 RPS Load
+  -Response Time: 15.43s 
+  -Responses per second: 45.31| ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) 
+  ## 1000 RPS Load
+  -Response Time: 1.09s 
+  -Responses per second: 424.44|
   
-  Using keyset pagination as opposed to OFFSET LIMIT increased query times by 60%. This is because the query could go directly to a specific index, rather than sequentially searching through one million products. If we had a smaller database, the difference could be negligible.
+  Individual query times using keyset pagination as opposed to OFFSET LIMIT were twice as fast. With a 1000 rps load, response times were 15 times faster and I got nearly ten times the amount of responses per second. This is because the query could go directly to a specific index, rather than sequentially searching through one million products. If we had a smaller database, the difference could be negligible.
 </details>
+
 <details>
   <summary>Indexing</summary>
   
-  
-  |                    Before                   |                   After                    |
-| :------------------------------------------------: | :-----------------------------------------------: |
-| | |
-  
+  After indexing, individual query times improved significantly, and in one case the query time was reduced from 409.5ms to 23.25ms. That's 17 times faster. In the image below you can see that I was able to achieve a maximum of 2205.89 responses per second with a response time of 1.16ms when ramping up to 4000 responses per second locally.
+  ![related](https://user-images.githubusercontent.com/105510284/216202187-b69591a6-b659-463f-be98-ef837632dfe6.png)
+
+</details> 
 </details> 
 
-
-Back End Architecture utilizes AWS to deploy a load balancer with a cache, 3 servers, and a Postgres database. All load tests performed via Loader.io.
+The back End Architecture consisted of 3 servers, an NGINX load balancer with a cache, and a Postgres database. The products API was then deployed on AWS where load tests were performed via Loader.io.
 
 <details>
-  <summary>Typical Load Performance</summary>
-
-  #### Typical 1000 RPS Load
-
-  Perfomance at typical load of 1000 clients per second. 4ms latency and 0% error
-
-  ![1000 RPS Performance](assets/Products1kReg.png)
+  <summary>Deployed Optimizations</summary>
+  
+The data below is based on the product list API endpoint. The product list endpoint returns a specific list of products based on the page and count provided. I will be using the data to show improvements as the backend architecture was scaled.
 
 </details>
 
-
-
-<a name="optimization"></a>
-### Optimization
-
-<details><summary>Cache Implementation</summary>
-
-  #### Cache Performance
-
-  Cache and load balancer implemented using Nginx - Latency has decreased by almost 50% to an average of 61ms and can handle up to 5000rps with a 0% error rate.
-
-  ![5000 RPS Performance](assets/Products5kCache.png)
-
-</details>
 
 <a name="tech"></a>
 ### Tech Stack
