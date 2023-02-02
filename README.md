@@ -2,8 +2,8 @@
 
 ### Table of Contents
 1. [General Info](#general-info)
-2. [Performance](#performance)
-3. [Optimization](#optimization)
+2. [Database and Queries](#performance)
+3. [Scaling](#scaling)
 4. [Tech Stack](#tech)
 5. [Team](#team)
 
@@ -13,7 +13,7 @@
 Products API for the back-end of a clothing retail website that needed to meet the demand of a growing customer base continuosly accessing the over 1,000,000 product inventory. Within two weeks, our team designed a database and server, deployed it on AWS, and achieved a minimum of 1000 responses per second, with less than 1% error rate.
  
 <a name="performance"></a>
-### Perfomance
+### Database and Queries
 
 I began the process of architecting a postgres database after analyzing five csv files making up over 26 million rows of data. Once the database was designed to best handle user queries I engineered an ETL process to clean legacy data and ensure seamless loading into PostgresDB using CSV-Parser.
 
@@ -51,6 +51,9 @@ Maximizing query efficiency was important to me because I viewed it as a limitin
 
 </details> 
 </details> 
+
+<a name="scaling"></a>
+### Scaling
 
 The back End Architecture consisted of 3 servers, an NGINX load balancer with a cache, and a Postgres database. The products API was then deployed on AWS where load tests were performed via Loader.io.
 
