@@ -37,10 +37,10 @@ By using a connection pool, when our user requests can be handled more efficient
 | ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) 
   ## 1000 RPS Load
   -Response Time: 15.43s 
-  -Responses per second: 45.31| ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) 
+  -Responses per second: 45.31 | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png) 
   ## 1000 RPS Load
   -Response Time: 1.09s 
-  -Responses per second: 424.44|
+  -Responses per second: 424.44 |
   
   Individual query times using keyset pagination as opposed to OFFSET LIMIT were twice as fast. With a 1000 rps load, response times were 15 times faster and I got nearly ten times the amount of responses per second. This is because the query could go directly to a specific index, rather than sequentially searching through one million products. If we had a smaller database, the difference could be negligible.
  
@@ -63,11 +63,11 @@ The back End Architecture consisted of 3 servers, an NGINX load balancer with a 
 <details>
   <summary>Deployed Optimizations</summary>
 
-## Background
+### Background
  
 The data below is based on the product list API endpoint which returns a specific list of products based on the page and count provided. I will be using the data to show improvements as the backend architecture was scaled, starting with one server and progressing to three serves, a load balancer and caching.
  
-## One Server
+### One Server
  
  Using Loader.io, I stress tested the system with one server and one database. After 30 seconds of 1000 rps load, a maximum of 931.83 rps was achieved with a 1.479s response time. However, the system performed well under an 825 rps load, easily achieving 825rps at 77ms response time.  
 ![Screenshot 2023-01-07 at 10 05 35 AM](https://user-images.githubusercontent.com/105510284/216225632-e428e766-1620-43ea-b09b-9978a419360e.png)
