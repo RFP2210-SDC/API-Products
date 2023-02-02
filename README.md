@@ -25,12 +25,9 @@ Maximizing query efficiency was important to me because I viewed it as a limitin
 <details>
   <summary>Keyset Pagination</summary>
   
-  ##Keyset Pagination
   |                    Before                   |                   After                    |
 | :------------------------------------------------: | :-----------------------------------------------: |
-| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png)
- | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png)
- |
+| ![ProductListBefore](https://user-images.githubusercontent.com/105510284/216197155-eab039d9-573c-47be-97fb-4b2aa5ecee68.png) | ![ProductListAfter](https://user-images.githubusercontent.com/105510284/216197187-477090fe-accd-44d0-8daf-a403bf56addf.png)|
   
 </details>
 <details>
