@@ -22,15 +22,11 @@ I began the process of architecting a postgres database after analyzing five csv
 
 Maximizing query efficiency was important to me because I viewed it as a limiting factor for the response time and responses per second goals I was given. Spending more time optimizing query speeds can help save costs when horizontally or vertically scaling. The three main optimizations I made were client pooling, keyset pagination, and indexing.
 
-<details>
-  <summary>Connection Pool</summary>
+### Connection Pool
  
 By using a connection pool, when our user requests can be handled more efficiently.  The pool is able to leverage the databases multithreading abilities and reuse threads, rather than creating and tearing down a single thread when using a client connection. This is important when handling many requests per second.
-</details> 
 
-<details>
- 
-  <summary>Keyset Pagination</summary>
+### Keyset Pagination
   
  |                    Before                         |                   After                           |
  | :-----------------------------------------------: | :-----------------------------------------------: |
@@ -41,16 +37,12 @@ By using a connection pool, when our user requests can be handled more efficient
  
 Individual query times using keyset pagination as opposed to OFFSET LIMIT were twice as fast. With a 1000 rps load, response times were 15 times faster and I got nearly ten times the amount of responses per second. This is because the query could go directly to a specific index, rather than sequentially searching through one million products. If we had a smaller database, the difference could be negligible.
  
-</details>
-
-<details>
-  <summary>Indexing</summary>
+### Indexing
   
 After indexing, individual query times improved significantly, and in one case the query time was reduced from 409.5ms to 23.25ms. That's 17 times faster. In the image below you can see that I was able to achieve a maximum of 2205.89 responses per second with a response time of 1.16ms when ramping up to 4000 responses per second locally.
  
  ![related](https://user-images.githubusercontent.com/105510284/216202187-b69591a6-b659-463f-be98-ef837632dfe6.png)
 
-</details> 
 </details> 
 
 <a name="scaling"></a>
