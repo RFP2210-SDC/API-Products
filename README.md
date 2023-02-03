@@ -4,8 +4,9 @@
 1. [General Info](#general-info)
 2. [Database and Queries](#performance)
 3. [Scaling](#scaling)
-4. [Tech Stack](#tech)
-5. [Team](#team)
+4. [Outcome](#outcome)
+5. [Tech Stack](#tech)
+6. [Team](#team)
 
 <a name="general-info"></a>
 ## General Info
@@ -77,6 +78,15 @@ Ultimately, the product list endpoint achieved 4415.83 rps with a response time 
 
 </details>
 
+<a name="outcome"></a>
+## Outcome 
+
+| API Endpoint | Image | RPS | Response Time | Error Rate |
+| --------------- | :---------------------------------------------------------------------: | :---: | :---: | :---: |
+| get product list |![Screenshot 2023-01-08 at 10 31 23 PM](https://user-images.githubusercontent.com/105510284/216493378-03d13e25-5547-41cd-b5bb-179cacbbbfde.png) | 7415.83 | 63ms | 0.9% |
+| get product | ![Screenshot 2023-01-08 at 10 33 38 PM](https://user-images.githubusercontent.com/105510284/216493541-ea32ec80-09f8-4c8c-913b-7969e5bba7ea.png) | 2954.7 | 70ms | 1.3% |
+| get product styles | ![Screenshot 2023-01-08 at 10 36 40 PM](https://user-images.githubusercontent.com/105510284/216493677-53423aeb-35cb-4d19-b99d-81430a0fb885.png) | 2988.43 | 76ms | 0.2% |
+| get related products| ![Screenshot 2023-01-08 at 10 35 26 PM](https://user-images.githubusercontent.com/105510284/216493795-42244d7d-2390-46d8-b287-584a6d58fbc4.png) | 4189.53 | 94ms | 1.1% |
 
 <a name="tech"></a>
 ## Tech Stack
