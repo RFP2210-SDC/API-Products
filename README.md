@@ -1,6 +1,6 @@
 # Products API
 
-### Table of Contents
+## Table of Contents
 1. [General Info](#general-info)
 2. [Database and Queries](#performance)
 3. [Scaling](#scaling)
@@ -8,12 +8,12 @@
 5. [Team](#team)
 
 <a name="general-info"></a>
-### General Info
+## General Info
 
 Products API for the back-end of a clothing retail website that needed to meet the demand of a growing customer base continuosly accessing the over 1,000,000 product inventory. Within two weeks, our team designed a database and server, deployed it on AWS, and achieved a minimum of 1000 responses per second, with less than 1% error rate.
  
 <a name="performance"></a>
-### Database and Queries
+## Database and Queries
 
 I began the process of architecting a postgres database after analyzing five csv files making up over 26 million rows of data. Once the database was designed to best handle user queries I engineered an ETL process to clean legacy data and ensure seamless loading into PostgresDB using CSV-Parser.
 
@@ -46,7 +46,7 @@ After indexing, individual query times improved significantly, and in one case t
 </details> 
 
 <a name="scaling"></a>
-### Scaling
+## Scaling
 
 The back End Architecture consisted of 3 servers, an NGINX load balancer with a cache, and a Postgres database. The products API was then deployed on AWS where load tests were performed via Loader.io.
 
@@ -79,7 +79,7 @@ Ultimately, the product list endpoint achieved 4415.83 rps with a response time 
 
 
 <a name="tech"></a>
-### Tech Stack
+## Tech Stack
 ![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
