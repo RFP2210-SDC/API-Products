@@ -81,6 +81,8 @@ Ultimately, the product list endpoint achieved 4415.83 rps with a response time 
 <a name="outcome"></a>
 ## Outcome 
 
+Each API endpoint was able to achieve 3000-7500 responses per second (rps) which was 2000 more than the minimmum expectation of 1000 rps. Balancing the load across 3 servers by using NGINX made these metrics possible. In some cases there was over 100% increase in rps just by horizontally scaling the system from 1 to 3 servers. Response times saw an increase in speed and error rates decreased as well. Finally, NGINX's caching abilites allowed for improvements across the board. Just below the systems maximum rps threshold, the response times were up to 40% faster and error rates fell 77% in some cases. The maximum rps for the system with 3 servers load balanced with caching was 2-4 times greater than the maximum without caching. Below I have created a table to show the metrics for each API endpoint under its max stress.
+
 | API Endpoint | Image | RPS | Response Time | Error Rate |
 | --------------- | :---------------------------------------------------------------------: | :---: | :---: | :---: |
 | get product list |![Screenshot 2023-01-08 at 10 31 23 PM](https://user-images.githubusercontent.com/105510284/216493378-03d13e25-5547-41cd-b5bb-179cacbbbfde.png) | 7415.83 | 63ms | 0.9% |
